@@ -1,21 +1,31 @@
 import { createIcon } from "@chakra-ui/icons";
-import { Box, Button, Center, Flex, Image, IconButton } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Image,
+  IconButton,
+  Fade,
+} from "@chakra-ui/react";
 import { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { ReactEventHandler, SyntheticEvent, useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { iFungiResponse } from "../pages/api/game";
 import { fetchGame } from "../queries/fungi";
 
 const Game: NextPage = (): JSX.Element => {
-  const { isLoading, error, data, refetch } = useQuery<iFungiResponse, Error>(
-    ["fetchGame"],
-    () => fetchGame()
-  );
+  const { isLoading, error, data, refetch, isFetching } = useQuery<
+    iFungiResponse,
+    Error
+  >(["fetchGame"], () => fetchGame());
 
   const [choices, setChoices] = useState<Array<string>>();
   const [buttonsClicked, setButtonsClicked] = useState<
     Array<HTMLButtonElement>
   >([]);
+
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     if (data) {
@@ -34,11 +44,14 @@ const Game: NextPage = (): JSX.Element => {
   };
 
   const resetGame = () => {
+    setImageLoaded(false);
     buttonsClicked.forEach(
       (button) =>
         (button.style.backgroundColor = "var(--chakra-colors-whiteAlpha-200)")
     );
   };
+
+  console.log(isFetching || isLoading);
 
   return (
     <>
@@ -46,9 +59,12 @@ const Game: NextPage = (): JSX.Element => {
         <Box boxSize="sm" width={"100%"}>
           <Center marginBottom={"2rem"}>
             <Image
+              className={[imageLoaded ? "fade-in-image" : ""].join(" ")}
+              onLoad={() => setImageLoaded(true)}
               boxSize={{ base: "300px", md: "600px" }}
               objectFit={"cover"}
               src={data.file}
+              fallbackSrc={"/bigmushrooms.svg"}
               alt="Svampen som du ska gissa"
               border="10px"
               borderColor="white"
@@ -66,7 +82,7 @@ const Game: NextPage = (): JSX.Element => {
                   <Button
                     key={name}
                     onClick={(e) => checkAnswer(e.currentTarget)}
-                    disabled={isLoading}
+                    disabled={isFetching || !imageLoaded}
                   >
                     {name.split(".")[0]}
                   </Button>
@@ -77,12 +93,20 @@ const Game: NextPage = (): JSX.Element => {
             <IconButton
               aria-label="Hämta ny svamp"
               width="fit-content"
-              alignContent={"center"}
               onClick={() => {
                 refetch(), resetGame();
               }}
               title="Hämta ny svamp"
-              icon={<Mushroom height={"auto"} width="2rem" />}
+              disabled={isFetching}
+              icon={
+                <Mushroom
+                  className={[
+                    isFetching || !imageLoaded ? "spinMushroom" : "",
+                  ].join()}
+                  height={"auto"}
+                  width="2rem"
+                />
+              }
             ></IconButton>
           </Center>
         </Box>

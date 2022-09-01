@@ -16,6 +16,31 @@ a {
   box-sizing: border-box;
 }
 
+
+
+.spinMushroom {
+  animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+  from {-webkit-transform: rotate(0deg);}
+  to   {-webkit-transform: rotate(359deg);}
+}
+
+.bigMushroom{
+  background-image: url("/bigmushrooms.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.fade-in-image { animation: fadeIn 1.5s; }
+
+
+@keyframes fadeIn {
+  0% { opacity: 0.25; }
+  100% { opacity: 1; }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

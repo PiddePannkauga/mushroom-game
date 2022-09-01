@@ -18,12 +18,15 @@ const Home: NextPage = () => {
           width={"100%"}
           height={"100%"}
           justifyContent={"center"}
-          marginTop={{ base: "2rem", md: "6rem" }}
+          marginTop={{ base: "2rem", md: "4rem", lg: "6rem" }}
         >
           <Game />
         </Flex>
       </main>
-      <footer className={styles.footer}></footer>
+      <footer className={styles.footer}>
+        Foton: Nils-Otto Nilsson Tony Svensson <br /> Hemsida: Petter Månsson{" "}
+        <br /> Högskolan Kristianstad
+      </footer>
     </div>
   );
 };
