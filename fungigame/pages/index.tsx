@@ -18,8 +18,7 @@ const Home: NextPage = () => {
           width={"100%"}
           height={"100%"}
           justifyContent={"center"}
-          alignItems={{ base: "none", md: "center" }}
-          marginTop={{ base: "2rem", md: "20%" }}
+          marginTop={{ base: "2rem", md: "6rem" }}
         >
           <Game />
         </Flex>
