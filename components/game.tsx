@@ -66,15 +66,23 @@ const Game: NextPage = (): JSX.Element => {
               width={"fit-content"}
               justifyContent="center"
             >
-              <Image
-                className={[imageLoaded ? "fade-in-image" : ""].join(" ")}
-                onLoad={() => setImageLoaded(true)}
-                boxSize={{ se: "250px", sm: "300px", md: "600px" }}
-                objectFit={"cover"}
-                src={data.file}
-                fallbackSrc={"/bigmushrooms.svg"}
-                alt="Svampen som du ska gissa"
-              />
+              {isFetching ? (
+                <Image
+                  src={"/bigmushrooms.svg"}
+                  boxSize={{ se: "250px", sm: "300px", md: "600px" }}
+                  objectFit={"cover"}
+                />
+              ) : (
+                <Image
+                  className={[imageLoaded ? "fade-in-image" : ""].join(" ")}
+                  onLoad={() => setImageLoaded(true)}
+                  boxSize={{ se: "250px", sm: "300px", md: "600px" }}
+                  objectFit={"cover"}
+                  src={data.file}
+                  fallbackSrc={"/bigmushrooms.svg"}
+                  alt="Svampen som du ska gissa"
+                />
+              )}
             </Center>
           </Center>
           <Flex
