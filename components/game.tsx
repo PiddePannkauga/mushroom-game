@@ -6,10 +6,16 @@ import {
   Flex,
   Image,
   IconButton,
-  Fade,
+  Text,
 } from "@chakra-ui/react";
 import { NextPage } from "next";
-import { ReactEventHandler, SyntheticEvent, useEffect, useState } from "react";
+import {
+  ReactEventHandler,
+  SyntheticEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useQuery } from "react-query";
 import { iFungiResponse } from "../pages/api/game";
 import { fetchGame } from "../queries/fungi";
@@ -24,6 +30,9 @@ const Game: NextPage = (): JSX.Element => {
   const [buttonsClicked, setButtonsClicked] = useState<
     Array<HTMLButtonElement>
   >([]);
+
+  const [renderCred, setRenderCred] = useState<boolean>(false);
+  const [deRenderCred, setDeRenderCred] = useState<boolean>(false);
 
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -51,7 +60,9 @@ const Game: NextPage = (): JSX.Element => {
     );
   };
 
-  console.log(isFetching || isLoading);
+  const timeout = (ms: number) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
 
   return (
     <>
@@ -64,13 +75,20 @@ const Game: NextPage = (): JSX.Element => {
               borderColor="white"
               borderStyle="solid"
               width={"fit-content"}
-              justifyContent="center"
+              onMouseOver={() => {
+                setRenderCred(true);
+                setDeRenderCred(false);
+              }}
+              onMouseLeave={async () => {
+                setDeRenderCred(true);
+                await new Promise((resolve) => setTimeout(resolve, 1000));
+                setRenderCred(false);
+              }}
             >
               {isFetching ? (
                 <Image
                   src={"/bigmushrooms.svg"}
                   boxSize={{ se: "250px", sm: "300px", md: "600px" }}
-                  objectFit={"cover"}
                 />
               ) : (
                 <Image
@@ -82,6 +100,25 @@ const Game: NextPage = (): JSX.Element => {
                   fallbackSrc={"/bigmushrooms.svg"}
                   alt="Svampen som du ska gissa"
                 />
+              )}
+              {renderCred && (
+                <Box
+                  className={[
+                    "fade-in-cred cred",
+                    deRenderCred ? "fade-out-cred" : "",
+                  ].join(" ")}
+                  boxSize={{ se: "250px", sm: "300px", md: "600px" }}
+                >
+                  <Text
+                    fontSize="xs"
+                    marginLeft={"1rem"}
+                    bottom={"1rem"}
+                    position={"absolute"}
+                  >
+                    Foto: <br /> Nils-Otto Nilsson <br /> Tony Svensson <br />{" "}
+                    (Högskolan Kristianstad)
+                  </Text>
+                </Box>
               )}
             </Center>
           </Center>

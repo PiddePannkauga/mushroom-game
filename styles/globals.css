@@ -22,6 +22,11 @@ a {
   animation: rotation 2s infinite linear;
 }
 
+.cred{
+  background: linear-gradient(360deg, rgba(0,0,0,0.8) 0%, rgba(255, 255, 255, 0)100%);
+  position: absolute;
+}
+
 @keyframes rotation {
   from {-webkit-transform: rotate(0deg);}
   to   {-webkit-transform: rotate(359deg);}
@@ -34,11 +39,17 @@ a {
 }
 
 .fade-in-image { animation: fadeIn 1.5s; }
-
+.fade-in-cred { animation: fadeIn 1s; }
+.fade-out-cred { animation: fadeOut 1s; }
 
 @keyframes fadeIn {
   0% { opacity: 0.25; }
   100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 @media (prefers-color-scheme: dark) {

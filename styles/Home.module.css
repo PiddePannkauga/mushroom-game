@@ -96,7 +96,10 @@
   margin-left: 0.5rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 320px) {
+  .container{
+    padding: 0 0.5rem;
+  }
 }
 
 @media (min-width: 600px) {
