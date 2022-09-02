@@ -13,12 +13,12 @@ const Home: NextPage = () => {
         <meta name="description" content="svamp" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className={styles.main}>
         <Flex
           width={"100%"}
           height={"100%"}
           justifyContent={"center"}
-          marginTop={{ base: "2rem", md: "4rem", lg: "6rem" }}
+          marginTop={{ base: "1rem", md: "4rem" }}
         >
           <Game />
         </Flex>

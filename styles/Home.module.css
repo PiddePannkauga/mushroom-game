@@ -1,26 +1,19 @@
 .container {
   padding: 0 2rem;
+  position: relative;
 }
 
 .main {
   min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
+  overflow: hidden;
 }
 
 .footer {
+  width: fit-content;
+  font-size: 8px;
+  padding-bottom: 0.5rem;
   position: fixed;
-  font-size: 10px;
   bottom: 0;
-  display: flex;
-  flex: 1;
-  padding-bottom: 1rem;
-  justify-content: center;
-  align-items: center;
 }
 
 .footer a {
@@ -115,6 +108,13 @@
     width: 100%;
     flex-direction: column;
   }
+ 
+}
+
+@media (min-width: 600px) {
+.main{
+  padding-bottom: 0;
+}
 }
 
 @media (prefers-color-scheme: dark) {

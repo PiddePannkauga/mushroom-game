@@ -57,19 +57,25 @@ const Game: NextPage = (): JSX.Element => {
     <>
       {data && (
         <Box boxSize="sm" width={"100%"}>
-          <Center marginBottom={"2rem"}>
-            <Image
-              className={[imageLoaded ? "fade-in-image" : ""].join(" ")}
-              onLoad={() => setImageLoaded(true)}
-              boxSize={{ base: "300px", md: "600px" }}
-              objectFit={"cover"}
-              src={data.file}
-              fallbackSrc={"/bigmushrooms.svg"}
-              alt="Svampen som du ska gissa"
+          <Center>
+            <Center
+              marginBottom={"1rem"}
               border="10px"
               borderColor="white"
               borderStyle="solid"
-            />
+              width={"fit-content"}
+              justifyContent="center"
+            >
+              <Image
+                className={[imageLoaded ? "fade-in-image" : ""].join(" ")}
+                onLoad={() => setImageLoaded(true)}
+                boxSize={{ base: "300px", md: "600px" }}
+                objectFit={"cover"}
+                src={data.file}
+                fallbackSrc={"/bigmushrooms.svg"}
+                alt="Svampen som du ska gissa"
+              />
+            </Center>
           </Center>
           <Flex
             flexDirection={{ base: "column", md: "row" }}
@@ -89,7 +95,7 @@ const Game: NextPage = (): JSX.Element => {
                 );
               })}
           </Flex>
-          <Center marginTop={{ base: "2rem", md: "none" }}>
+          <Center marginTop={{ base: "0.75rem", md: "1.5rem" }}>
             <IconButton
               aria-label="Hämta ny svamp"
               width="fit-content"
