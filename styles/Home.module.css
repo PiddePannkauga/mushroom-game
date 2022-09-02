@@ -1,20 +1,13 @@
 .container {
   padding: 0 2rem;
-  position: relative;
 }
 
 .main {
-  min-height: 100vh;
-  overflow: hidden;
+  max-height: 100vh;
+  padding-bottom: 2.5rem;
 }
 
-.footer {
-  width: fit-content;
-  font-size: 8px;
-  padding-bottom: 0.5rem;
-  position: fixed;
-  bottom: 0;
-}
+
 
 .footer a {
   display: flex;
@@ -104,11 +97,6 @@
 }
 
 @media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
- 
 }
 
 @media (min-width: 600px) {

@@ -14,7 +14,18 @@ const queryClient = new QueryClient({
 const config = {
   initialColorMode: "dark",
 };
-export const theme = extendTheme({ config });
+
+const breakpoints = {
+  se: "20em",
+  sm: "30em",
+  md: "48em",
+  lg: "62em",
+  xl: "80em",
+  "2xl": "96em",
+};
+
+// 3. Extend the theme
+export const theme = extendTheme({ config, breakpoints });
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

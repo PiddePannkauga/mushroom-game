@@ -69,7 +69,7 @@ const Game: NextPage = (): JSX.Element => {
               <Image
                 className={[imageLoaded ? "fade-in-image" : ""].join(" ")}
                 onLoad={() => setImageLoaded(true)}
-                boxSize={{ base: "300px", md: "600px" }}
+                boxSize={{ se: "250px", sm: "300px", md: "600px" }}
                 objectFit={"cover"}
                 src={data.file}
                 fallbackSrc={"/bigmushrooms.svg"}
@@ -95,7 +95,11 @@ const Game: NextPage = (): JSX.Element => {
                 );
               })}
           </Flex>
-          <Center marginTop={{ base: "0.75rem", md: "1.5rem" }}>
+          <Center
+            alignSelf={{ base: "flex-end", sm: "center" }}
+            marginLeft={"auto"}
+            marginTop={{ base: "0.75rem", md: "1.5rem" }}
+          >
             <IconButton
               aria-label="Hämta ny svamp"
               width="fit-content"
