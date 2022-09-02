@@ -81,7 +81,7 @@ const Game: NextPage = (): JSX.Element => {
               }}
               onMouseLeave={async () => {
                 setDeRenderCred(true);
-                await new Promise((resolve) => setTimeout(resolve, 1000));
+                await new Promise((resolve) => setTimeout(resolve, 300));
                 setRenderCred(false);
               }}
             >
@@ -101,7 +101,7 @@ const Game: NextPage = (): JSX.Element => {
                   alt="Svampen som du ska gissa"
                 />
               )}
-              {renderCred && (
+              {renderCred && imageLoaded && (
                 <Box
                   className={[
                     "fade-in-cred cred",

@@ -23,7 +23,7 @@ a {
 }
 
 .cred{
-  background: linear-gradient(360deg, rgba(0,0,0,0.8) 0%, rgba(255, 255, 255, 0)100%);
+  background: linear-gradient(360deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, rgba(0, 0, 0, 0)100%);
   position: absolute;
 }
 
@@ -40,7 +40,7 @@ a {
 
 .fade-in-image { animation: fadeIn 1.5s; }
 .fade-in-cred { animation: fadeIn 1s; }
-.fade-out-cred { animation: fadeOut 1s; }
+.fade-out-cred { animation: fadeOut 0.3s; }
 
 @keyframes fadeIn {
   0% { opacity: 0.25; }
